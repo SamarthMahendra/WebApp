@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="with=device-width, initial-scale=1.0">
+<title> An interactive Webapp for Sentiment analysis </title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,600;0,800;1,300;1,500;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+  <section class="sub-header">    
+      <nav>
+          
+          <div class= "nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+              <ul>
+                <li><a href="index.html" > HOME</a></li>
+                <!--<li><a href="Blog.html"> BLOG</a></li>-->
+                <li><a href="Services.html">SERVICES</a></li>
+                <li><a href="about.html"> ABOUT</a></li>
+                <li><a href="contact.html"> CONTACT</a></li>
+              </ul>
+          </div>
+          <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+      <h1>AI for Finance</h1>
+</section>
+<!-----------Finance content-------------------------->
+<section class="finance-content">
+   <br>     
+            
+            <h1>Stock Market Prediction</h1>
+            <p>The stock market is known for being volatile, dynamic, and nonlinear. Accurate stock price prediction is extremely challenging because of 
+                multiple factors, such as politics, global economic conditions, unexpected events, a company’s financial performance, 
+                and so on.Sentiment of the news of any companies plays a vital role in deciding the performance in the
+                stock market. <br>
+                <br>
+                Therefore, it is very important to analyze the polarity of the news about
+                companies before making a investment in the stock market. 
+                The revolution in artificial intelligence and the availability of large data sets is setting up the ground for the end of the equity 
+                analyst position.Artificial intelligence came now to an efficiency point where it is capable to consistently outperform analysts.
+                Our mission is to provide our clients with high quality trading signals. We provide both long and short signals, in the equity market.</p>
+
+            <!--<div class="fin-comment-box">
+                <h3>Enter the review</h3>
+                <form class="fin-comment-form">
+                    <input type="text" placeholder="Enter your name">
+                    <input type="email" placeholder="Enter your email">
+                    <input type="text"  placeholder="Enter the review">
+                    <button type="submit" class="hero-btn red-btn">SUBMIT</button>
+                   
+                </form>
+            </div>    
+        </div>
+        <div class="fin-blog-right">
+            <h3> Categories</h3>
+            <div>
+                <span> Postive</span>
+                
+            </div>
+            <div>
+                <span> Negative</span>
+                
+            </div>
+            <div>
+                <span>Neutral</span>
+                
+            </div>
+
+        </div>
+        
+    </div>
+</section>
+
+
+
+-----------footer------------------------
+ <section class="footer">
+    <h4>About Us</h4>
+    <p>A paragraph is a series of related sentences developing<br>
+        a central idea, called the topic.
+    </p>
+    <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i>
+    </div>
+ </section>---------->
+
+
+
+
+
+
+
+
+
+
+<!--------JAVASCRIPT for toggle Menu--------------->
+
+<script>
+    var navLinks = document.getElementById("navLinks");
+    function showMenu(){
+        navLinks.style.right ="0";
+    }
+    function hideMenu(){
+        navLinks.style.right ="-200px";
+    }
+</script>
+
+</body>
+</html>
+
