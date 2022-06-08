@@ -10,6 +10,7 @@ import joblib
 import pickle
 import os.path
 
+
 def convert_data_to_examples(train, test, DATA_COLUMN, LABEL_COLUMN):
     train_InputExamples = train.apply(
         lambda x: InputExample(guid=None,  # Globally unique ID for bookkeeping, unused in this case
@@ -75,7 +76,7 @@ def convert_examples_to_tf_dataset(examples, tokenizer, max_length=128):
 
 def model1(text):
 
-    if not os.path.isfile('model_weights.index'):
+    if  not os.path.isfile('model_weights.index'):
         df=pd.read_csv("static/ratings40.csv",encoding = 'latin-1')
         df['txt']=df.Reviews
         df['target']=df.Ratings
@@ -104,8 +105,9 @@ def model1(text):
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=[tf.keras.metrics.SparseCategoricalAccuracy('accuracy')])
         model.fit(train_data, epochs=2, validation_data=validation_data)
-
-        model.save_weights('model_weights')
+        os.listdir('savedmodel')
+        model.save_weights('savedmodel')
+        model.
         pred_sentences = [text]
         tf_batch = tokenizer(pred_sentences, max_length=128, padding=True, truncation=True, return_tensors='tf')
         tf_outputs = model(tf_batch)
@@ -123,7 +125,7 @@ def model1(text):
         pred_sentences = [text]
         tf_batch = tokenizer(pred_sentences, max_length=128, padding=True, truncation=True, return_tensors='tf')
         model = TFBertForSequenceClassification.from_pretrained("bert-base-uncased")
-        model.load_weights('model_weights')
+        model.load_weights('savedmodel')
         tf_outputs = model(tf_batch)
         tf_predictions = tf.nn.softmax(tf_outputs[0], axis=-1)
         labels = ['Negative', 'Positive']
@@ -132,5 +134,5 @@ def model1(text):
         res = {}
         for i in range(len(pred_sentences)):
             print(pred_sentences[i], ": \n", labels[label[i]])
-            res[pred_sentences[i]] = labels[label[i]]
+            res["res"] = labels[label[i]]
         return res

@@ -10,6 +10,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,600;0,800;1,300;1,500;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 </head>
+<script>
+        const userAction = async () => {
+        const response = await fetch('http://127.0.0.1:8000/api-search-finace',{
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({"q":"q"})
+        });
+        const myJson = await response.json(); //extract JSON from the http response
+        document.getElementById("result").textContent = myJson["image"];
+    }
+</script>
 <body>
   <section class="sub-header">    
       <nav>
@@ -43,7 +57,34 @@
                 The revolution in artificial intelligence and the availability of large data sets is setting up the ground for the end of the equity 
                 analyst position.Artificial intelligence came now to an efficiency point where it is capable to consistently outperform analysts.
                 Our mission is to provide our clients with high quality trading signals. We provide both long and short signals, in the equity market.</p>
+<section class="services">
 
+        <div class="course-col">
+            <img src="{% static 'images/bpcl.jpg' %}" height="300px" width="auto">
+
+
+        </div>
+        <div class="course-col">
+            <img src="{% static 'images/hindustan unilever.jpg' %}" height="300px" width="auto">
+
+        </div>
+        <div class="course-col">
+            <img src="{% static 'images/tatachemicals.jpg' %}" height="300px" width="auto">
+
+        </div>
+        <div class="course-col">
+            <img src="{% static 'images/tatamotors.jpg' %}" height="300px" width="auto">
+
+        </div>
+        <div class="course-col">
+            <img src="{% static 'images/tatapower.jpg' %}" height="300px" width="auto">
+
+
+        </div>
+
+</section>
+    <button  onclick="userAction()">click here</button>
+    <img id="myImage">
             <!--<div class="fin-comment-box">
                 <h3>Enter the review</h3>
                 <form class="fin-comment-form">

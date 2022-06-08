@@ -12,6 +12,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,600;0,800;1,300;1,500;1,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 </head>
+<script>
+
+    const userAction = async () => {
+        var q = document.getElementById("searchbox").value;
+        const response = await fetch('http://127.0.0.1:8000/api-search',{
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({"q":q})
+        });
+        const myJson = await response.json(); //extract JSON from the http response
+        result =JSON.stringify(myJson, undefined, 2);
+        var t = JSON.parse(result);
+        var r =t["res"];
+        document.getElementById("result").textContent = r["res"]
+    }
+
+
+
+</script>
 <style>
 #searchbox{
     border-radius: 5px;
@@ -43,12 +65,21 @@
     <br>
 
             <h1> AI for Hotels and Restaurants review</h1>
-    <center><form action="run" method="post">{% csrf_token %}
-<br>
-<input id = 'searchbox' name="search_key" placeholder="Search">
 
-<input id = 'searchbox' type="submit" value="Search">
-</form></center>
+<br>
+
+
+
+<center>
+    <input id = 'searchbox' name="search_key" placeholder="Search">
+    <button onclick="userAction()">Click here</button>
+    </center>
+    <center>
+        <div id="result">
+
+    </div>
+    </center>
+
 
 
            <!----- <div class="restaurant-comment-box">
