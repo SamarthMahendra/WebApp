@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <meta name="viewport" content="with=device-width, initial-scale=1.0">
 <title> An interactive Webapp for Sentiment analysis </title>
 {% load static %}
@@ -11,18 +13,10 @@
 <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 </head>
 <script>
-        const userAction = async () => {
-        const response = await fetch('http://127.0.0.1:8000/api-search-finace',{
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({"q":"q"})
-        });
-        const myJson = await response.json(); //extract JSON from the http response
-        document.getElementById("result").textContent = myJson["image"];
-    }
+
+
+
+
 </script>
 <body>
   <section class="sub-header">    
@@ -60,31 +54,73 @@
 <section class="services">
 
         <div class="course-col">
-            <img src="{% static 'images/bpcl.jpg' %}" height="300px" width="auto">
+            <img src="{% static 'images/bpcl.jpg' %}" height="300px" width="auto" onclick="userAction('q1')">
 
 
         </div>
         <div class="course-col">
-            <img src="{% static 'images/hindustan unilever.jpg' %}" height="300px" width="auto">
+            <img src="{% static 'images/hindustan unilever.jpg' %}" height="300px" width="auto" onclick="userAction('q2')">
 
         </div>
         <div class="course-col">
-            <img src="{% static 'images/tatachemicals.jpg' %}" height="300px" width="auto">
+            <img src="{% static 'images/tatachemicals.jpg' %}" height="300px" width="auto" onclick="userAction('q3')">
 
         </div>
         <div class="course-col">
-            <img src="{% static 'images/tatamotors.jpg' %}" height="300px" width="auto">
+            <img src="{% static 'images/tatamotors.jpg' %}" height="300px" width="auto" onclick="userAction('q4')">
 
         </div>
         <div class="course-col">
-            <img src="{% static 'images/tatapower.jpg' %}" height="300px" width="auto">
+            <img src="{% static 'images/tatapower.jpg' %}" height="300px" width="auto" onclick="userAction('q5')">
 
 
         </div>
 
 </section>
     <button  onclick="userAction()">click here</button>
-    <img id="myImage">
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+    <div id="result">
+
+    </div>
+<script>
+
+  const userAction = async (q) => {
+        const response = await fetch('http://127.0.0.1:8000/api-search-finace',{
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({"q":q})
+        });
+        const myJson = await response.json(); //extract JSON from the http response
+        document.getElementById("result").innerHTML = '<canvas id="myChart" style="width:100%;max-width:600px"></canvas>';
+    var xValues = myJson["x"];
+var yValues = myJson["y"];
+var barColors = ["red", "green","blue","orange","brown"];
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Result"
+    }
+  }
+});
+    }
+
+
+
+</script>
             <!--<div class="fin-comment-box">
                 <h3>Enter the review</h3>
                 <form class="fin-comment-form">

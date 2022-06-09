@@ -71,14 +71,10 @@ def res_rev_search(request):
 
 @api_view(['POST','GET'])
 def fin_search(request):
-
+    q = request.data['q']
     from ai_models import model_twitter
-    res = model_twitter.fn_main()
-
-    r={
-        "image":base64.b64encode(res).decode("utf8")
-    }
-    return Response(r)
+    res = model_twitter.fn_main(q)
+    return Response(res)
 
 
 

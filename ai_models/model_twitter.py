@@ -73,13 +73,28 @@ def plot(r):
     plott = sns.barplot(x='sentiment', y='count', data=df)
     plt.savefig('saved_figure.png')
     plt.show()
+    res = {
+        "x":['Positive', 'Negative', 'Neutral'],
+        "y":[c1, c3, c2]
+    }
+    return res
 
 # select q1, q2, q3 .. based on the button pressed in the front end and pass that corresponding q to extract tweets function
 # the output of extract tweets to be given to clean funciton and its output to be given to model
 # model returns array of decisons which is given to plot which create a bar graph
-def fn_main():
-    plot(model(clean(extract_tweets(q2))))
-    image = open('saved_figure.png', 'rb')
-    return image
+def fn_main(q):
+    v = None
+    if q == 'q1':
+        v=q1
+    elif q == 'q2':
+        v=q2
+    elif q == 'q3':
+        v=q3
+    elif q == 'q4':
+        v=q4
+    elif q == 'q5':
+        v=q5
 
-fn_main()
+    res = plot(model(clean(extract_tweets(v))))
+
+    return res
