@@ -30,6 +30,7 @@ urlpatterns = [
     path('contact.html',views.contact,name="contact" ),
     path('blog.html',views.blog,name="blog" ),
     path('Finance.html',views.finance,name="finance" ),
+    path('Finance2.html',views.finance2,name="finance" ),
     path('Restaurant review.html',views.restaurant_review,name="Restaurant review" ),
     path('Restaurant review search.html',views.restaurant_review_search,name="Restaurant review search.html" ),
     path('api-auth/', include('rest_framework.urls')),

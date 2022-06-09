@@ -30,6 +30,11 @@ def finance(request):
     template = loader.get_template('Finance.html')
     return HttpResponse(template.render())
 
+def finance2(request):
+    template = loader.get_template('Finance2.html')
+    return HttpResponse(template.render())
+
+
 
 def restaurant_review(request):
     template = loader.get_template('Restaurant review.html')
